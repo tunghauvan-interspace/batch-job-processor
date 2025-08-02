@@ -9,10 +9,10 @@ services:
     environment:
       - SERVICES=sqs,s3
       - DEBUG=1
-      - DATA_DIR=/tmp/localstack/data
+      - DATA_DIR=/opt/localstack/data
       - DOCKER_HOST=unix:///var/run/docker.sock
     volumes:
-      - "./localstack-data:/tmp/localstack"
+      - localstack-data:/opt/localstack/data
       - "/var/run/docker.sock:/var/run/docker.sock"
     networks:
       - batch-job-network
@@ -31,3 +31,6 @@ services:
 networks:
   batch-job-network:
     driver: bridge
+
+volumes:
+  localstack-data:
